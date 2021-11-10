@@ -24,6 +24,7 @@ from ...file_utils import (
     is_tf_available,
     is_tokenizers_available,
     is_torch_available,
+    is_flax_available,
 )
 
 
@@ -64,6 +65,17 @@ if is_tf_available():
         "TFXLMRobertaModel",
     ]
 
+if is_flax_available():
+    _import_structure["modeling_flax_xlm_roberta"] = [
+        "Flax_XLM_ROBERTA_PRETRAINED_MODEL_ARCHIVE_LIST",
+        "FlaxXLMRobertaForMaskedLM",
+        "FlaxXLMRobertaForMultipleChoice",
+        "FlaxXLMRobertaForQuestionAnswering",
+        "FlaxXLMRobertaForSequenceClassification",
+        "FlaxXLMRobertaForTokenClassification",
+        "FlaxXLMRobertaModel",
+    ]
+
 
 if TYPE_CHECKING:
     from .configuration_xlm_roberta import (
@@ -100,7 +112,17 @@ if TYPE_CHECKING:
             TFXLMRobertaForTokenClassification,
             TFXLMRobertaModel,
         )
-
+        
+    if is_flax_available():
+        from .modeling_flax_xlm_roberta import (
+            FLAX_XLM_ROBERTA_PRETRAINED_MODEL_ARCHIVE_LIST, # only place we deviate from "Flax" naming convention
+            FlaxXLMRobertaForMaskedLM,
+            FlaxXLMRobertaForMultipleChoice,
+            FlaxXLMRobertaForQuestionAnswering,
+            FlaxXLMRobertaForSequenceClassification,
+            FlaxXLMRobertaForTokenClassification,
+            FlaxXLMRobertaModel,
+        )
 else:
     import sys
 
